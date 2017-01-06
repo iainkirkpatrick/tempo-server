@@ -1,0 +1,16 @@
+{
+  "name": "tempo-server",
+  "version": "0.0.1",
+  "description": "graphql server for tempo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iainkirkpatrick",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "graphql-server-express": "^0.4.3"
+  }
+}
