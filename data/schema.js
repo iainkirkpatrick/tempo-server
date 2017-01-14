@@ -4,18 +4,21 @@ import resolvers from './resolvers'
 
 const schema = `
 type Person {
-  id: Int!
+  id: Int
   firstName: String
   lastName: String
+  projects: [Project]
 }
 type Project {
-  id: Int!
+  id: Int
   title: String
   people: [Person]
 }
 
 type Query {
+  person(id: Int): Person
   people: [Person]
+  projects: [Project]
 }
 `
 export default makeExecutableSchema({
