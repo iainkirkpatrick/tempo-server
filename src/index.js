@@ -1,17 +1,9 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
+'use strict'
 
-import schema from '../data/schema'
+import app from './app'
+const port = 3000 // app.get('port')
+const server = app.listen(port)
 
-const myGraphQLSchema = schema
-const PORT = 3000
-
-var app = express()
-
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: myGraphQLSchema }))
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
-
-app.listen(PORT)
-
-console.log('Running a GraphQL API server at localhost:3000/graphql')
+server.on('listening', () =>
+  console.log(`Feathers / GraphQL application started on localhost:${port}`)
+)

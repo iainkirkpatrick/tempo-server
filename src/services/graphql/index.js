@@ -4,8 +4,8 @@ const hooks = require('./hooks')
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
 import { makeExecutableSchema } from 'graphql-tools'
 
-import schema from './schema/'
-import resolvers from './resolvers/'
+import schema from './schema'
+import resolvers from './resolvers'
 
 module.exports = function () {
   const app = this
