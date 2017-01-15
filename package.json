@@ -2,7 +2,7 @@
   "name": "tempo-server",
   "version": "0.0.1",
   "description": "graphql server for tempo",
-  "main": "index.js",
+  "main": "src/",
   "scripts": {
     "start": "babel-node ./index.js"
   },
