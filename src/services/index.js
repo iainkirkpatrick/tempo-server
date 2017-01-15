@@ -12,6 +12,7 @@ module.exports = function () {
 
   app.configure(authentication)
   app.configure(user)
-  app.configure(graphql)
   app.configure(project)
+
+  app.configure(graphql)
 }

@@ -12,7 +12,7 @@ const projects = [
 ]
 
 export default function resolvers (app) {
-  const Users = app.service('users')
+  const Projects = app.service('projects')
 
   return {
     Query: {
@@ -23,7 +23,7 @@ export default function resolvers (app) {
         return people
       },
       projects () {
-        return projects
+        return Projects.find()
       }
     },
     Mutation: {
