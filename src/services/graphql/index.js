@@ -1,6 +1,9 @@
 'use strict'
 
 const hooks = require('./hooks')
+import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
+
+import schema from './schema/'
 
 class Service {
   constructor (options) {
@@ -42,7 +45,7 @@ module.exports = function () {
   const app = this
 
   // Initialize our service with any options it requires
-  app.use('/graphqls', new Service())
+  app.use('/graphql', new Service())
 
   // Get our initialize service to that we can bind hooks
   const graphqlService = app.service('/graphqls')
