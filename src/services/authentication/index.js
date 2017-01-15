@@ -1,6 +1,7 @@
 'use strict'
 
-const authentication = require('feathers-authentication')
+import authentication from 'feathers-authentication'
+import local from 'feathers-authentication-local'
 
 module.exports = function () {
   const app = this
@@ -8,4 +9,5 @@ module.exports = function () {
   let config = app.get('auth')
 
   app.configure(authentication(config))
+    .configure(local())
 }
