@@ -1,4 +1,5 @@
 import find from 'lodash/find'
+import assign from 'lodash/assign'
 
 const people = [
   { id: 1, firstName: 'Iain', lastName: 'Kirkpatrick', projectIds: [1, 2] },
@@ -24,7 +25,8 @@ const resolveFunctions = {
   },
   Mutation: {
     addProject (obj, args, context) {
-      var newProject = args.input
+      var lastProjectId = projects[projects.length - 1].id
+      var newProject = assign(args.input, { id: lastProjectId + 1 })
       projects.push(newProject)
       return newProject
     }
