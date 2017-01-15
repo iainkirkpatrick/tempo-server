@@ -22,6 +22,13 @@ const resolveFunctions = {
       return projects
     }
   },
+  Mutation: {
+    addProject (obj, args, context) {
+      var newProject = args.input
+      projects.push(newProject)
+      return newProject
+    }
+  },
   Person: {
     projects (person) {
       return projects.filter((proj) => { return person.projectIds.includes(proj.id) })
