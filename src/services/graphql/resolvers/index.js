@@ -11,36 +11,38 @@ const projects = [
   { id: 2, title: 'Conscious Consumers', peopleIds: [1] }
 ]
 
-const resolveFunctions = {
-  Query: {
-    person (obj, args, context) {
-      return find(people, (person) => { return person.id === args.id })
+export default function resolvers (app) {
+  const Users = app.service('users')
+
+  return {
+    Query: {
+      person (obj, args, context) {
+        return find(people, (person) => { return person.id === args.id })
+      },
+      people () {
+        return people
+      },
+      projects () {
+        return projects
+      }
     },
-    people () {
-      return people
+    Mutation: {
+      addProject (obj, args, context) {
+        var lastProjectId = projects[projects.length - 1].id
+        var newProject = assign(args.input, { id: lastProjectId + 1 })
+        projects.push(newProject)
+        return newProject
+      }
     },
-    projects () {
-      return projects
-    }
-  },
-  Mutation: {
-    addProject (obj, args, context) {
-      var lastProjectId = projects[projects.length - 1].id
-      var newProject = assign(args.input, { id: lastProjectId + 1 })
-      projects.push(newProject)
-      return newProject
-    }
-  },
-  Person: {
-    projects (person) {
-      return projects.filter((proj) => { return person.projectIds.includes(proj.id) })
-    }
-  },
-  Project: {
-    people (project) {
-      return people.filter((person) => { return project.peopleIds.includes(person.id) })
+    Person: {
+      projects (person) {
+        return projects.filter((proj) => { return person.projectIds.includes(proj.id) })
+      }
+    },
+    Project: {
+      people (project) {
+        return people.filter((person) => { return project.peopleIds.includes(person.id) })
+      }
     }
   }
 }
-
-export default resolveFunctions

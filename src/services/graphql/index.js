@@ -11,7 +11,7 @@ module.exports = function () {
   const app = this
   const executableSchema = makeExecutableSchema({
     typeDefs: schema,
-    resolvers: resolvers
+    resolvers: resolvers(app)
   })
 
   // Initialize our service with any options it requires
