@@ -19,6 +19,7 @@
     "feathers-configuration": "^0.4.1",
     "feathers-errors": "^2.5.0",
     "feathers-hooks": "^1.7.1",
+    "feathers-knex": "^2.6.0",
     "feathers-permissions": "^0.1.1",
     "feathers-rest": "^1.6.0",
     "graphql": "^0.8.2",
