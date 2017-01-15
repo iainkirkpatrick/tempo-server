@@ -30,12 +30,12 @@ module.exports = function () {
     endpointURL: '/graphql'
   }))
 
-  // Get our initialize service to that we can bind hooks
-  const graphqlService = app.service('/graphql')
-
-  // Set up our before hooks
-  graphqlService.before(hooks.before)
-
-  // Set up our after hooks
-  graphqlService.after(hooks.after)
+  // // Get our initialize service to that we can bind hooks
+  // const graphqlService = app.service('/graphql')
+  //
+  // // Set up our before hooks
+  // graphqlService.before(hooks.before)
+  //
+  // // Set up our after hooks
+  // graphqlService.after(hooks.after)
 }
