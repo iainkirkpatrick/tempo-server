@@ -10,10 +10,7 @@ module.exports = function () {
 
   const options = {
     Model: knex(app.get('db')),
-    paginate: {
-      default: 5,
-      max: 25
-    }
+    name: 'projects'
   }
 
   // Initialize our service with any options it requires
