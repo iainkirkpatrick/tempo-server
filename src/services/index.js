@@ -1,10 +1,13 @@
 'use strict'
-// const authentication = require('./authentication')
-// const user = require('./user')
+
+import authentication from './authentication'
+import user from './user'
 import graphql from './graphql'
 
 export default function () {
   const app = this
 
+  app.configure(authentication)
+  app.configure(user)
   app.configure(graphql)
 }

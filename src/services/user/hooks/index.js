@@ -1,42 +1,37 @@
 'use strict'
 
 // const globalHooks = require('../../../hooks')
-const hooks = require('feathers-hooks')
-const auth = require('feathers-authentication').hooks
+import hooks from 'feathers-hooks'
+import auth from 'feathers-authentication'
+import local from 'feathers-authentication-local'
+import permissions from 'feathers-permissions'
 
 exports.before = {
   all: [],
   find: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated()
+    auth.hooks.authenticate('jwt'),
+    permissions.hooks.checkPermissions({ service: 'users' }),
+    permissions.hooks.isPermitted()
   ],
   get: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
+    auth.hooks.authenticate('jwt'),
+    permissions.hooks.checkPermissions({ service: 'users' }),
+    permissions.hooks.isPermitted()
   ],
   create: [
-    auth.hashPassword()
+    local.hooks.hashPassword()
   ],
   update: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
+    auth.hooks.authenticate('jwt'),
+    permissions.hooks.checkPermissions({ service: 'users' }),
+    permissions.hooks.isPermitted(),
+    local.hooks.hashPassword()
   ],
   patch: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
-  ],
-  remove: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
+    auth.hooks.authenticate('jwt'),
+    permissions.hooks.checkPermissions({ service: 'users' }),
+    permissions.hooks.isPermitted(),
+    local.hooks.hashPassword()
   ]
 }
 
