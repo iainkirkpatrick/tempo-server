@@ -1,29 +1,30 @@
-'use strict';
+'use strict'
 
-const service = require('feathers-sequelize');
-const project = require('./project-model');
-const hooks = require('./hooks');
+const knex = require('knex')
+const service = require('feathers-knex')
+// const project = require('./project-model')
+const hooks = require('./hooks')
 
-module.exports = function(){
-  const app = this;
+module.exports = function () {
+  const app = this
 
   const options = {
-    Model: project(app.get('sequelize')),
+    Model: knex(app.get('db')),
     paginate: {
       default: 5,
       max: 25
     }
-  };
+  }
 
   // Initialize our service with any options it requires
-  app.use('/projects', service(options));
+  app.use('/projects', service(options))
 
   // Get our initialize service to that we can bind hooks
-  const projectService = app.service('/projects');
+  const projectService = app.service('/projects')
 
   // Set up our before hooks
-  projectService.before(hooks.before);
+  projectService.before(hooks.before)
 
   // Set up our after hooks
-  projectService.after(hooks.after);
-};
+  projectService.after(hooks.after)
+}
