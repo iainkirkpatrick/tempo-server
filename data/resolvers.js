@@ -35,6 +35,11 @@ const resolveFunctions = {
     projects (person) {
       return projects.filter((proj) => { return person.projectIds.includes(proj.id) })
     }
+  },
+  Project: {
+    people (project) {
+      return people.filter((person) => { return project.peopleIds.includes(person.id) })
+    }
   }
 }
 
