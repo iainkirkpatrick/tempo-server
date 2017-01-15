@@ -1,11 +1,11 @@
 export default `
-  type Person {
+  type Developer {
     id: Int
     firstName: String
     lastName: String
     projects: [Project]
   }
-  input PersonInput {
+  input DeveloperInput {
     firstName: String
     lastName: String
     projects: [ProjectInput]
@@ -14,16 +14,16 @@ export default `
   type Project {
     id: Int
     title: String
-    people: [Person]
+    developers: [Developer]
   }
   input ProjectInput {
     title: String
-    people: [PersonInput]
+    developers: [DeveloperInput]
   }
 
   type Query {
-    person(id: Int): Person
-    people: [Person]
+    developer(id: Int): Developer
+    developers: [Developer]
     projects: [Project]
   }
 

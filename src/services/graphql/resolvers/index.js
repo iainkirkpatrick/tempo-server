@@ -1,14 +1,14 @@
 import find from 'lodash/find'
 import assign from 'lodash/assign'
 
-const people = [
+const developers = [
   { id: 1, firstName: 'Iain', lastName: 'Kirkpatrick', projectIds: [1, 2] },
   { id: 2, firstName: 'Greg', lastName: 'Kan', projectIds: [1] }
 ]
 
 const projects = [
-  { id: 1, title: 'FitAdvisor', peopleIds: [1, 2] },
-  { id: 2, title: 'Conscious Consumers', peopleIds: [1] }
+  { id: 1, title: 'FitAdvisor', developersIds: [1, 2] },
+  { id: 2, title: 'Conscious Consumers', developersIds: [1] }
 ]
 
 export default function resolvers (app) {
@@ -16,11 +16,11 @@ export default function resolvers (app) {
 
   return {
     Query: {
-      person (obj, args, context) {
-        return find(people, (person) => { return person.id === args.id })
+      developer (obj, args, context) {
+        return find(developers, (dev) => { return dev.id === args.id })
       },
-      people () {
-        return people
+      developers () {
+        return developers
       },
       projects () {
         return Projects.find()
@@ -35,14 +35,14 @@ export default function resolvers (app) {
         return Projects.create(args.input, (createdProject) => { return createdProject })
       }
     },
-    Person: {
-      projects (person) {
-        return projects.filter((proj) => { return person.projectIds.includes(proj.id) })
+    Developer: {
+      projects (developer) {
+        return projects.filter((proj) => { return developer.projectIds.includes(proj.id) })
       }
     },
     Project: {
-      people (project) {
-        return people.filter((person) => { return project.peopleIds.includes(person.id) })
+      developers (project) {
+        return developers.filter((dev) => { return project.developersIds.includes(dev.id) })
       }
     }
   }
