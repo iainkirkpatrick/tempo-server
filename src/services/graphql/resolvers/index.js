@@ -28,10 +28,11 @@ export default function resolvers (app) {
     },
     Mutation: {
       addProject (obj, args, context) {
-        var lastProjectId = projects[projects.length - 1].id
-        var newProject = assign(args.input, { id: lastProjectId + 1 })
-        projects.push(newProject)
-        return newProject
+        // var lastProjectId = projects[projects.length - 1].id
+        // var newProject = assign(args.input, { id: lastProjectId + 1 })
+        // projects.push(newProject)
+        // return newProject
+        return Projects.create(args.input, (createdProject) => { return createdProject })
       }
     },
     Person: {
