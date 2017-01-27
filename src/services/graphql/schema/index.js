@@ -6,9 +6,7 @@ export default `
     projects: [Project]
   }
   input DeveloperInput {
-    firstName: String
-    lastName: String
-    projects: [ProjectInput]
+    id: Int
   }
 
   type Project {
