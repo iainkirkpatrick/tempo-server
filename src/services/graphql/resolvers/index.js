@@ -32,7 +32,6 @@ export default function resolvers (app) {
         // var newProject = assign(args.input, { id: lastProjectId + 1 })
         // projects.push(newProject)
         // return newProject
-        console.log(args.input)
         var inputtedDeveloperIds = args.input.developers.map((dev) => { return dev.id })
         var relatedDevelopers = developers.filter((dev) => { return inputtedDeveloperIds.includes(dev.id) })
         return Projects.create({
