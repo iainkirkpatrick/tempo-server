@@ -1,16 +1,6 @@
 import find from 'lodash/find'
 import assign from 'lodash/assign'
 
-const developers = [
-  { id: 1, firstName: 'Iain', lastName: 'Kirkpatrick', projectIds: [1, 2] },
-  { id: 2, firstName: 'Greg', lastName: 'Kan', projectIds: [1] }
-]
-
-const projects = [
-  { id: 1, title: 'FitAdvisor', developersIds: [1, 2] },
-  { id: 2, title: 'Conscious Consumers', developersIds: [1] }
-]
-
 export default function resolvers (app) {
   const Projects = app.service('projects')
 

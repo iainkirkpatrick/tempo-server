@@ -10,7 +10,7 @@ module.exports = function () {
 
   const options = {
     Model: knex(app.get('db')),
-    name: 'projects'
+    name: 'Projects'
   }
 
   // Initialize our service with any options it requires
