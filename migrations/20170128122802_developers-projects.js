@@ -1,27 +1,27 @@
 exports.up = function (knex, Promise) {
-  return knex.schema.createTableIfNotExists('developers', function (table) {
+  return knex.schema.createTableIfNotExists('Developers', function (table) {
     table.increments('id')
     table.string('firstName')
     table.string('lastName')
   })
-  .then(() => { return knex.schema.createTableIfNotExists('projects', function (table) {
+  .then(() => { return knex.schema.createTableIfNotExists('Projects', function (table) {
     table.increments('id')
     table.string('title')
     table.string('client')
   })})
-  .then(() => { return knex.schema.createTableIfNotExists('developers_projects', function (table) {
+  .then(() => { return knex.schema.createTableIfNotExists('Developers_Projects', function (table) {
     table.increments('id')
-    table.integer('developerId').references('developers.id')
-    table.integer('projectId').references('projects.id')
+    table.integer('DeveloperId').references('Developers.id')
+    table.integer('ProjectId').references('Projects.id')
   })})
 }
 
 exports.down = function (knex, Promise) {
-  return knex.schema.dropTableIfExists('developers_projects')
+  return knex.schema.dropTableIfExists('Developers_Projects')
   .then(() => {
-    return knex.schema.dropTableIfExists('projects')
+    return knex.schema.dropTableIfExists('Projects')
   })
   .then(() => {
-    return knex.schema.dropTableIfExists('developers')
+    return knex.schema.dropTableIfExists('Developers')
   })
 }
