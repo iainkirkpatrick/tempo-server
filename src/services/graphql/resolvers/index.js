@@ -4,6 +4,7 @@ import assign from 'lodash/assign'
 export default function resolvers (app) {
   const Projects = app.service('projects')
   const Developers = app.service('developers')
+  const DevelopersProjects = app.service('developersProjects')
 
   return {
     Query: {
@@ -36,7 +37,13 @@ export default function resolvers (app) {
     },
     Developer: {
       projects (developer) {
-        return projects.filter((proj) => { return developer.projectIds.includes(proj.id) })
+        return DevelopersProjects.find({ query: { DeveloperId: developer.id } })
+        .then((rows) => {
+          var projectIds = rows.map((row) => {
+            return row.ProjectId
+          })
+          return Projects.find({ query: { id: { $in: projectIds } } })
+        })
       }
     },
     Project: {
