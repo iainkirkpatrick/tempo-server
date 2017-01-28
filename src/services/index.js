@@ -6,6 +6,7 @@ import graphql from './graphql'
 
 import project from './project'
 import developer from './developer'
+import developerProject from './developer-project'
 
 // N.B. this needs to be module.exports to work with feathres-generator
 module.exports = function () {
@@ -15,6 +16,7 @@ module.exports = function () {
   app.configure(user)
   app.configure(project)
   app.configure(developer)
+  app.configure(developerProject)
 
   app.configure(graphql)
 }
