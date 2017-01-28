@@ -23,16 +23,29 @@ export default function resolvers (app) {
     },
     Mutation: {
       addProject (obj, args, context) {
-        // var lastProjectId = projects[projects.length - 1].id
-        // var newProject = assign(args.input, { id: lastProjectId + 1 })
-        // projects.push(newProject)
-        // return newProject
-        var inputtedDeveloperIds = args.input.developers.map((dev) => { return dev.id })
-        var relatedDevelopers = developers.filter((dev) => { return inputtedDeveloperIds.includes(dev.id) })
         return Projects.create({
           title: args.input.title,
-          developers: relatedDevelopers
-        }, (createdProject) => { return createdProject })
+          client: args.input.client
+        })
+        .then((createdProject) => {
+          if (args.input.developers) {
+            var inputtedDeveloperIds = args.input.developers.map((dev) => { return dev.id })
+            return Developers.find({ query: { id: { $in: inputtedDeveloperIds } } })
+            .then((developers) => {
+              return DevelopersProjects.create(developers.map((developer) => {
+                return {
+                  DeveloperId: developer.id,
+                  ProjectId: createdProject.id
+                }
+              }))
+            })
+            .then(() => {
+              return createdProject
+            })
+          } else {
+            return createdProject
+          }
+        })
       }
     },
     Developer: {

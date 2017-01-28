@@ -9,6 +9,7 @@ export default `
     id: Int
     firstName: String
     lastName: String
+    projects: [ProjectInput]
   }
 
   type Project {
@@ -18,6 +19,7 @@ export default `
     developers: [Developer]
   }
   input ProjectInput {
+    id: Int
     title: String
     client: String
     developers: [DeveloperInput]
