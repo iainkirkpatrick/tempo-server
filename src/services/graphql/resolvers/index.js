@@ -7,11 +7,14 @@ export default function resolvers (app) {
 
   return {
     Query: {
-      // developer (obj, args, context) {
-      //   return find(developers, (dev) => { return dev.id === args.id })
-      // },
+      developer (obj, args, context) {
+        return Developers.get(args.id)
+      },
       developers () {
         return Developers.find()
+      },
+      project (obj, args, context) {
+        return Projects.get(args.id)
       },
       projects () {
         return Projects.find()
