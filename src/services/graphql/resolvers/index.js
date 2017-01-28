@@ -1,6 +1,3 @@
-import find from 'lodash/find'
-import assign from 'lodash/assign'
-
 export default function resolvers (app) {
   const Projects = app.service('projects')
   const Developers = app.service('developers')
