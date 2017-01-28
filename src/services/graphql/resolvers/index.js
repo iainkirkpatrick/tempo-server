@@ -48,7 +48,13 @@ export default function resolvers (app) {
     },
     Project: {
       developers (project) {
-        return developers.filter((dev) => { return project.developersIds.includes(dev.id) })
+        return DevelopersProjects.find({ query: { ProjectId: project.id } })
+        .then((rows) => {
+          var developerIds = rows.map((row) => {
+            return row.DeveloperId
+          })
+          return Developers.find({ query: { id: { $in: developerIds } } })
+        })
       }
     }
   }
