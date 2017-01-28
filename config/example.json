@@ -1,0 +1,16 @@
+{
+  "host": "feathers-generated-app.feathersjs.com",
+  "port": 3000,
+  "public": "../public/",
+  "auth": {
+    "secret": "FEATHERS_AUTH_SECRET"
+  },
+  "db": {
+    "client": "pg",
+    "connection": {
+      "host": "HOST",
+      "user": "USER",
+      "database": "database"
+    }
+  }
+}
