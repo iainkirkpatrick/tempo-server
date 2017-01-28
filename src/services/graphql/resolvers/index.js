@@ -3,14 +3,15 @@ import assign from 'lodash/assign'
 
 export default function resolvers (app) {
   const Projects = app.service('projects')
+  const Developers = app.service('developers')
 
   return {
     Query: {
-      developer (obj, args, context) {
-        return find(developers, (dev) => { return dev.id === args.id })
-      },
+      // developer (obj, args, context) {
+      //   return find(developers, (dev) => { return dev.id === args.id })
+      // },
       developers () {
-        return developers
+        return Developers.find()
       },
       projects () {
         return Projects.find()
