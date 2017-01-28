@@ -4,7 +4,7 @@
   "description": "graphql server for tempo",
   "main": "src/",
   "scripts": {
-    "start": "babel-node src/",
+    "dev": "babel-node src/",
     "reset-db": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "author": "iainkirkpatrick",
